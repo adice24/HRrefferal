@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
+import { ExpressAdapter } from '@nestjs/platform-express';
 
 const server = express();
 
-const bootstrap = async (expressInstance: any) => {
+export const createServer = async (expressInstance: any) => {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
@@ -16,8 +16,11 @@ const bootstrap = async (expressInstance: any) => {
   app.enableCors();
   
   await app.init();
+  return app;
 };
 
-bootstrap(server);
-
-export default server;
+// Vercel handler
+export default async (req: any, res: any) => {
+  await createServer(server);
+  return server(req, res);
+};
