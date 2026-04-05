@@ -35,8 +35,8 @@ export class AuthController {
   @Post('refresh')
   async refresh(@Request() req) {
     const payload = { sub: req.user.sub, role: req.user.role };
-    const accessToken = await this.authService['jwtService'].signAsync(payload);
-    const refreshToken = await this.authService['jwtService'].signAsync(payload, { expiresIn: '7d' });
+    const accessToken = await (this.authService as any).jwtService.signAsync(payload);
+    const refreshToken = await (this.authService as any).jwtService.signAsync(payload, { expiresIn: '7d' } as any);
     return { accessToken, refreshToken };
   }
 }
