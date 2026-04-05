@@ -27,11 +27,27 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT') || 4000;
-  await app.listen(port, '0.0.0.0');
-  console.log(`🚀 API listening on http://localhost:${port}`);
+  // Vercel handling 
+  if (process.env.VERCEL) {
+    await app.init();
+    return app.getHttpAdapter().getInstance();
+  } else {
+    const configService = app.get(ConfigService);
+    const port = configService.get<number>('PORT') || 4000;
+    await app.listen(port, '0.0.0.0');
+    console.log(`🚀 API listening on http://localhost:${port}`);
+  }
 }
-bootstrap();
 
-// trigger
+// Global variable for Vercel 
+let cachedServer: any;
+
+module.exports = async (req: any, res: any) => {
+  if (!cachedServer) {
+    cachedServer = await bootstrap();
+  }
+  return cachedServer(req, res);
+};
+
+// Also export bootstrap for local testing
+export { bootstrap };
