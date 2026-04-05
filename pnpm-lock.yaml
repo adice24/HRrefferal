@@ -47,6 +47,9 @@ importers:
       '@prisma/client':
         specifier: ^5.0.0
         version: 5.22.0(prisma@5.22.0)
+      '@refhire/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       bcrypt:
         specifier: ^5.1.0
         version: 5.1.1
