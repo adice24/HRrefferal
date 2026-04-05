@@ -205,6 +205,14 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-1.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -212,7 +220,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../.env"
   },
   "relativePath": "../prisma",
@@ -231,8 +239,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String     @id @default(cuid())\n  email        String     @unique\n  phone        String     @unique\n  employeeId   String     @unique\n  name         String\n  department   String?\n  role         String     @default(\"EMPLOYEE\")\n  passwordHash String?\n  isVerified   Boolean    @default(false)\n  otp          String?\n  otpExpiry    DateTime?\n  createdAt    DateTime   @default(now())\n  referrals    Referral[]\n}\n\nmodel OtpVerification {\n  id        String   @id @default(cuid())\n  email     String\n  otpHash   String\n  expiresAt DateTime\n  attempts  Int      @default(0)\n  used      Boolean  @default(false)\n  createdAt DateTime @default(now())\n}\n\nmodel EmailLog {\n  id      String   @id @default(cuid())\n  to      String\n  subject String\n  body    String\n  otp     String?\n  sentAt  DateTime @default(now())\n  status  String   @default(\"SENT\")\n}\n\nmodel Referral {\n  id             String      @id @default(cuid())\n  refCode        String      @unique @default(cuid())\n  candidateName  String\n  candidateEmail String\n  candidatePhone String\n  resumeUrl      String?\n  notes          String?\n  status         String      @default(\"NEW\")\n  createdAt      DateTime    @default(now())\n  updatedAt      DateTime    @updatedAt\n  referredById   String\n  positionId     String\n  position       Position    @relation(fields: [positionId], references: [id])\n  referredBy     User        @relation(fields: [referredById], references: [id])\n  statusHistory  StatusLog[]\n}\n\nmodel StatusLog {\n  id         String   @id @default(cuid())\n  fromStatus String\n  toStatus   String\n  note       String?\n  createdAt  DateTime @default(now())\n  referralId String\n  changedBy  String\n  referral   Referral @relation(fields: [referralId], references: [id])\n}\n\nmodel Position {\n  id         String     @id @default(cuid())\n  title      String\n  department String?\n  location   String?\n  isActive   Boolean    @default(true)\n  referrals  Referral[]\n}\n",
-  "inlineSchemaHash": "69f184bbce6337628d4435e802f23ce53439ac0151f34a1280276a077867b6e8",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../client\"\n  binaryTargets = [\"native\", \"rhel-openssl-1.0.x\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String     @id @default(cuid())\n  email        String     @unique\n  phone        String     @unique\n  employeeId   String     @unique\n  name         String\n  department   String?\n  role         String     @default(\"EMPLOYEE\")\n  passwordHash String?\n  isVerified   Boolean    @default(false)\n  otp          String?\n  otpExpiry    DateTime?\n  createdAt    DateTime   @default(now())\n  referrals    Referral[]\n}\n\nmodel OtpVerification {\n  id        String   @id @default(cuid())\n  email     String\n  otpHash   String\n  expiresAt DateTime\n  attempts  Int      @default(0)\n  used      Boolean  @default(false)\n  createdAt DateTime @default(now())\n}\n\nmodel EmailLog {\n  id      String   @id @default(cuid())\n  to      String\n  subject String\n  body    String\n  otp     String?\n  sentAt  DateTime @default(now())\n  status  String   @default(\"SENT\")\n}\n\nmodel Referral {\n  id             String      @id @default(cuid())\n  refCode        String      @unique @default(cuid())\n  candidateName  String\n  candidateEmail String\n  candidatePhone String\n  resumeUrl      String?\n  notes          String?\n  status         String      @default(\"NEW\")\n  createdAt      DateTime    @default(now())\n  updatedAt      DateTime    @updatedAt\n  referredById   String\n  positionId     String\n  position       Position    @relation(fields: [positionId], references: [id])\n  referredBy     User        @relation(fields: [referredById], references: [id])\n  statusHistory  StatusLog[]\n}\n\nmodel StatusLog {\n  id         String   @id @default(cuid())\n  fromStatus String\n  toStatus   String\n  note       String?\n  createdAt  DateTime @default(now())\n  referralId String\n  changedBy  String\n  referral   Referral @relation(fields: [referralId], references: [id])\n}\n\nmodel Position {\n  id         String     @id @default(cuid())\n  title      String\n  department String?\n  location   String?\n  isActive   Boolean    @default(true)\n  referrals  Referral[]\n}\n",
+  "inlineSchemaHash": "0fe834d5910087db278f6ddb3c8f2116cf18c22e0e6a1e9b202a33fec436e88a",
   "copyEngine": true
 }
 
@@ -272,6 +280,14 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "client/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-1.0.x.so.node");
+path.join(process.cwd(), "client/libquery_engine-rhel-openssl-1.0.x.so.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "client/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "client/schema.prisma")
