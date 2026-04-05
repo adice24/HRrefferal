@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '@refhire/ui/components/Input';
+import { Input } from '@refhire/ui';
 import { Search } from 'lucide-react';
 
 export const SearchLine = () => {
