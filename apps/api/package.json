@@ -14,6 +14,7 @@
     "test-smtp": "ts-node src/shilpa_smtp_test.ts"
   },
   "dependencies": {
+    "@refhire/db": "workspace:*",
     "@nestjs-modules/mailer": "^2.3.4",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.0.0",

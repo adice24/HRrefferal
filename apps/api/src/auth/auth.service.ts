@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException, ConflictException, BadRequestException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@refhire/db';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';

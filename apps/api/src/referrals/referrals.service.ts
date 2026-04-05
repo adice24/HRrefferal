@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@refhire/db';
 import { CreateReferralDto } from './dto/create-referral.dto';
 import { UpdateReferralStatusDto, ReferralStatus } from './dto/update-referral-status.dto';
 

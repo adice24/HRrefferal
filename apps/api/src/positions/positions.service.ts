@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaClient } from '@refhire/db';
 
 @Injectable()
 export class PositionsService {
