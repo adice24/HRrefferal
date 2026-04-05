@@ -223,7 +223,7 @@ export class AuthService {
     const payload = { sub: user.id, role: user.role, email: user.email };
     return {
       accessToken: this.jwtService.sign(payload),
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' } as any),
       user: { 
         id: user.id, 
         email: user.email, 
@@ -239,7 +239,7 @@ export class AuthService {
     const payload = { sub: user.userId || user.id, role: user.role, email: user.email };
     return {
       accessToken: this.jwtService.sign(payload),
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' } as any),
       user: { ...user },
     };
   }
