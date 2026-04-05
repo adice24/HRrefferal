@@ -1,0 +1,184 @@
+src/app.module.ts(3,30): error TS2307: Cannot find module '../packages/db/prisma.module' or its corresponding type declarations.
+src/auth/auth.controller.ts(4,26): error TS2307: Cannot find module './dto/login.dto' or its corresponding type declarations.
+src/auth/auth.controller.ts(12,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/auth/auth.controller.ts(12,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((registerDto: RegisterDto) => Promise<{ email: string; phone: string; name: string; employeeId: string; role: Role; id: string; department: string | null; otp: string | null; otpExpiry: Date | null; createdAt: Date; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((registerDto: RegisterDto) => Promise<{ email: string; phone: string; name: string; employeeId: string; role: Role; id: string; department: string | null; otp: string | null; otpExpiry: Date | null; createdAt: Date; }>)'.
+src/auth/auth.controller.ts(13,18): error TS1206: Decorators are not valid here.
+src/auth/auth.controller.ts(18,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/auth/auth.controller.ts(18,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; user: { id: string; email: string; name: string; role: Role; }; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; user: { id: string; email: string; name: string; role: Role; }; }>)'.
+src/auth/auth.controller.ts(19,15): error TS1206: Decorators are not valid here.
+src/auth/auth.controller.ts(19,15): error TS7006: Parameter 'req' implicitly has an 'any' type.
+src/auth/auth.controller.ts(24,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/auth/auth.controller.ts(24,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((email: string) => Promise<{ message: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((email: string) => Promise<{ message: string; }>)'.
+src/auth/auth.controller.ts(25,21): error TS1206: Decorators are not valid here.
+src/auth/auth.controller.ts(29,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/auth/auth.controller.ts(29,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((body: { email: string; otp: string; }) => Promise<{ verified: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((body: { email: string; otp: string; }) => Promise<{ verified: boolean; }>)'.
+src/auth/auth.controller.ts(30,19): error TS1206: Decorators are not valid here.
+src/auth/auth.controller.ts(35,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/auth/auth.controller.ts(35,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+src/auth/auth.controller.ts(36,17): error TS1206: Decorators are not valid here.
+src/auth/auth.controller.ts(36,17): error TS7006: Parameter 'req' implicitly has an 'any' type.
+src/auth/auth.module.ts(7,29): error TS2307: Cannot find module './jwt.strategy' or its corresponding type declarations.
+src/auth/auth.module.ts(8,31): error TS2307: Cannot find module './local.strategy' or its corresponding type declarations.
+src/auth/auth.service.ts(6,26): error TS2307: Cannot find module './dto/login.dto' or its corresponding type declarations.
+src/auth/auth.service.ts(45,9): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/auth/dto/register.dto.ts(5,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(6,3): error TS2564: Property 'email' has no initializer and is not definitely assigned in the constructor.
+src/auth/dto/register.dto.ts(8,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(9,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(10,3): error TS2564: Property 'phone' has no initializer and is not definitely assigned in the constructor.
+src/auth/dto/register.dto.ts(12,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(13,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(14,3): error TS2564: Property 'name' has no initializer and is not definitely assigned in the constructor.
+src/auth/dto/register.dto.ts(16,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(17,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(20,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(21,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(22,3): error TS2564: Property 'password' has no initializer and is not definitely assigned in the constructor.
+src/auth/dto/register.dto.ts(24,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/auth/dto/register.dto.ts(25,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/positions/positions.controller.ts(11,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/positions/positions.controller.ts(11,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }[]>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }[]>)'.
+src/positions/positions.controller.ts(12,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/positions/positions.controller.ts(12,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }[]>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }[]>)'.
+src/positions/positions.controller.ts(19,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/positions/positions.controller.ts(19,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((body: { title: string; department?: string | undefined; }) => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((body: { title: string; department?: string | undefined; }) => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }>)'.
+src/positions/positions.controller.ts(20,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/positions/positions.controller.ts(20,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((body: { title: string; department?: string | undefined; }) => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((body: { title: string; department?: string | undefined; }) => Promise<{ id: string; department: string | null; title: string; location: string | null; isActive: boolean; }>)'.
+src/positions/positions.controller.ts(21,16): error TS1206: Decorators are not valid here.
+src/referrals/dto/create-referral.dto.ts(5,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(6,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(7,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(8,3): error TS2564: Property 'candidateName' has no initializer and is not definitely assigned in the constructor.
+src/referrals/dto/create-referral.dto.ts(10,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(11,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(12,3): error TS2564: Property 'candidateEmail' has no initializer and is not definitely assigned in the constructor.
+src/referrals/dto/create-referral.dto.ts(14,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(15,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(16,3): error TS2564: Property 'candidatePhone' has no initializer and is not definitely assigned in the constructor.
+src/referrals/dto/create-referral.dto.ts(18,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(19,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(20,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(21,3): error TS2564: Property 'positionId' has no initializer and is not definitely assigned in the constructor.
+src/referrals/dto/create-referral.dto.ts(23,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(24,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(25,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(28,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(29,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/create-referral.dto.ts(30,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/update-referral-status.dto.ts(6,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/update-referral-status.dto.ts(7,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/update-referral-status.dto.ts(8,3): error TS2564: Property 'status' has no initializer and is not definitely assigned in the constructor.
+src/referrals/dto/update-referral-status.dto.ts(10,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/update-referral-status.dto.ts(11,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/dto/update-referral-status.dto.ts(12,4): error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+src/referrals/referrals.controller.ts(16,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(16,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, createReferralDto: CreateReferralDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, createReferralDto: CreateReferralDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+src/referrals/referrals.controller.ts(17,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(17,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, createReferralDto: CreateReferralDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, createReferralDto: CreateReferralDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+src/referrals/referrals.controller.ts(18,16): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(18,16): error TS7006: Parameter 'req' implicitly has an 'any' type.
+src/referrals/referrals.controller.ts(18,32): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(22,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(22,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((status?: ReferralStatus | undefined, query?: string | undefined) => Promise<({ referredBy: { name: string; employeeId: string; }; position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; })[]>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((status?: ReferralStatus | undefined, query?: string | undefined) => Promise<({ referredBy: { name: string; employeeId: string; }; position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; })[]>)'.
+src/referrals/referrals.controller.ts(23,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(23,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((status?: ReferralStatus | undefined, query?: string | undefined) => Promise<({ referredBy: { name: string; employeeId: string; }; position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; })[]>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((status?: ReferralStatus | undefined, query?: string | undefined) => Promise<({ referredBy: { name: string; employeeId: string; }; position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; })[]>)'.
+src/referrals/referrals.controller.ts(26,17): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(26,59): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(30,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(30,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{}>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{}>)'.
+src/referrals/referrals.controller.ts(31,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(31,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{}>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<{}>)'.
+src/referrals/referrals.controller.ts(36,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(36,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<{ referredBy: { email: string; phone: string; name: string; employeeId: string; role: Role; id: string; department: string | null; passwordHash: string; otp: string | null; otpExpiry: Date | null; createdAt: Date; }; position: { ...; }; statusHistory: { ...; }[]; } & { ...; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<{ referredBy: { email: string; phone: string; name: string; employeeId: string; role: Role; id: string; department: string | null; passwordHash: string; otp: string | null; otpExpiry: Date | null; createdAt: Date; }; position: { ...; }; statusHistory: { ...; }[]; } & { ...; }>)'.
+src/referrals/referrals.controller.ts(37,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(37,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<{ referredBy: { email: string; phone: string; name: string; employeeId: string; role: Role; id: string; department: string | null; passwordHash: string; otp: string | null; otpExpiry: Date | null; createdAt: Date; }; position: { ...; }; statusHistory: { ...; }[]; } & { ...; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<{ referredBy: { email: string; phone: string; name: string; employeeId: string; role: Role; id: string; department: string | null; passwordHash: string; otp: string | null; otpExpiry: Date | null; createdAt: Date; }; position: { ...; }; statusHistory: { ...; }[]; } & { ...; }>)'.
+src/referrals/referrals.controller.ts(38,17): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(42,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(42,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, id: string, updateDto: UpdateReferralStatusDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, id: string, updateDto: UpdateReferralStatusDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+src/referrals/referrals.controller.ts(43,3): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+src/referrals/referrals.controller.ts(43,4): error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, id: string, updateDto: UpdateReferralStatusDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any, id: string, updateDto: UpdateReferralStatusDto) => Promise<{ position: { id: string; department: string | null; title: string; location: string | null; isActive: boolean; }; } & { ...; }>)'.
+src/referrals/referrals.controller.ts(45,5): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(45,5): error TS7006: Parameter 'req' implicitly has an 'any' type.
+src/referrals/referrals.controller.ts(46,5): error TS1206: Decorators are not valid here.
+src/referrals/referrals.controller.ts(47,5): error TS1206: Decorators are not valid here.
+src/users/users.module.ts(2,30): error TS2307: Cannot find module './users.service' or its corresponding type declarations.
+src/users/users.module.ts(3,33): error TS2307: Cannot find module './users.controller' or its corresponding type declarations.
+src/users/users.module.ts(4,30): error TS2307: Cannot find module '../../packages/db/prisma.module' or its corresponding type declarations.
+../../packages/config/tailwind.config.ts(1,29): error TS2307: Cannot find module 'tailwindcss' or its corresponding type declarations.
+../../packages/db/prisma.module.ts(1,32): error TS2307: Cannot find module '@nestjs/common' or its corresponding type declarations.
+../../packages/ui/src/components/Button.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+../../packages/ui/src/components/Button.tsx(15,3): error TS7031: Binding element 'style' implicitly has an 'any' type.
+../../packages/ui/src/components/Button.tsx(16,3): error TS7031: Binding element 'children' implicitly has an 'any' type.
+../../packages/ui/src/components/Input.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+../../packages/ui/src/components/Input.tsx(10,63): error TS7031: Binding element 'style' implicitly has an 'any' type.

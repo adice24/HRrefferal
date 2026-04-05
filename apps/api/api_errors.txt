@@ -1,0 +1,14 @@
+src/app.module.ts(3,30): error TS2307: Cannot find module '@refhire/db' or its corresponding type declarations.
+src/auth/dto/register.dto.ts(2,10): error TS2305: Module '"@prisma/client"' has no exported member 'Role'.
+src/referrals/dto/update-referral-status.dto.ts(2,10): error TS2305: Module '"@prisma/client"' has no exported member 'ReferralStatus'.
+src/referrals/referrals.controller.ts(3,10): error TS2305: Module '"@prisma/client"' has no exported member 'ReferralStatus'.
+src/referrals/referrals.service.ts(2,24): error TS2305: Module '"@prisma/client"' has no exported member 'ReferralStatus'.
+src/referrals/referrals.service.ts(29,51): error TS2322: Type '{ OR: ({ candidateName: { contains: string; mode: string; }; } | { candidateEmail: { contains: string; mode: string; }; } | { position: { title: { contains: string; mode: string; }; }; })[]; } | {}' is not assignable to type 'ReferralWhereInput'.
+  Type '{ OR: ({ candidateName: { contains: string; mode: string; }; } | { candidateEmail: { contains: string; mode: string; }; } | { position: { title: { contains: string; mode: string; }; }; })[]; }' is not assignable to type 'ReferralWhereInput'.
+    Types of property 'OR' are incompatible.
+      Type '({ candidateName: { contains: string; mode: string; }; } | { candidateEmail: { contains: string; mode: string; }; } | { position: { title: { contains: string; mode: string; }; }; })[]' is not assignable to type 'ReferralWhereInput[]'.
+        Type '{ candidateName: { contains: string; mode: string; }; } | { candidateEmail: { contains: string; mode: string; }; } | { position: { title: { contains: string; mode: string; }; }; }' is not assignable to type 'ReferralWhereInput'.
+          Type '{ candidateName: { contains: string; mode: string; }; }' is not assignable to type 'ReferralWhereInput'.
+            Types of property 'candidateName' are incompatible.
+              Object literal may only specify known properties, and 'mode' does not exist in type 'StringFilter<"Referral">'.
+src/users/users.module.ts(4,30): error TS2307: Cannot find module '@refhire/db' or its corresponding type declarations.
