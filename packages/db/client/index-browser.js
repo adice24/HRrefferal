@@ -204,7 +204,18 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Role = exports.$Enums.Role = {
+  EMPLOYEE: 'EMPLOYEE',
+  ADMIN: 'ADMIN',
+  HR: 'HR'
+};
 
+exports.ReferralStatus = exports.$Enums.ReferralStatus = {
+  NEW: 'NEW',
+  CONTACTED: 'CONTACTED',
+  SELECTED: 'SELECTED',
+  REJECTED: 'REJECTED'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

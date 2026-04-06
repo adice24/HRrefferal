@@ -16,7 +16,7 @@ model User {
   employeeId   String     @unique
   name         String
   department   String?
-  role         String     @default("EMPLOYEE")
+  role         Role       @default(EMPLOYEE)
   passwordHash String?
   isVerified   Boolean    @default(false)
   otp          String?
@@ -53,7 +53,7 @@ model Referral {
   candidatePhone String
   resumeUrl      String?
   notes          String?
-  status         String      @default("NEW")
+  status         ReferralStatus @default(NEW)
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
   referredById   String
@@ -65,8 +65,8 @@ model Referral {
 
 model StatusLog {
   id         String   @id @default(cuid())
-  fromStatus String
-  toStatus   String
+  fromStatus ReferralStatus
+  toStatus   ReferralStatus
   note       String?
   createdAt  DateTime @default(now())
   referralId String
@@ -81,4 +81,17 @@ model Position {
   location   String?
   isActive   Boolean    @default(true)
   referrals  Referral[]
+}
+
+enum Role {
+  EMPLOYEE
+  ADMIN
+  HR
+}
+
+enum ReferralStatus {
+  NEW
+  CONTACTED
+  SELECTED
+  REJECTED
 }

@@ -16,7 +16,7 @@ model User {
   employeeId   String     @unique
   name         String
   department   String?
-  role         String     @default("EMPLOYEE")
+  role         Role       @default(EMPLOYEE)
   passwordHash String?
   isVerified   Boolean    @default(false)
   otp          String?
@@ -46,32 +46,32 @@ model EmailLog {
 }
 
 model Referral {
-  id             String      @id @default(cuid())
-  refCode        String      @unique @default(cuid())
+  id             String         @id @default(cuid())
+  refCode        String         @unique @default(cuid())
   candidateName  String
   candidateEmail String
   candidatePhone String
   resumeUrl      String?
   notes          String?
-  status         String      @default("NEW")
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  status         ReferralStatus @default(NEW)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
   referredById   String
   positionId     String
-  position       Position    @relation(fields: [positionId], references: [id])
-  referredBy     User        @relation(fields: [referredById], references: [id])
+  position       Position       @relation(fields: [positionId], references: [id])
+  referredBy     User           @relation(fields: [referredById], references: [id])
   statusHistory  StatusLog[]
 }
 
 model StatusLog {
-  id         String   @id @default(cuid())
-  fromStatus String
-  toStatus   String
+  id         String         @id @default(cuid())
+  fromStatus ReferralStatus
+  toStatus   ReferralStatus
   note       String?
-  createdAt  DateTime @default(now())
+  createdAt  DateTime       @default(now())
   referralId String
   changedBy  String
-  referral   Referral @relation(fields: [referralId], references: [id])
+  referral   Referral       @relation(fields: [referralId], references: [id])
 }
 
 model Position {
@@ -81,4 +81,17 @@ model Position {
   location   String?
   isActive   Boolean    @default(true)
   referrals  Referral[]
+}
+
+enum Role {
+  EMPLOYEE
+  ADMIN
+  HR
+}
+
+enum ReferralStatus {
+  NEW
+  CONTACTED
+  SELECTED
+  REJECTED
 }

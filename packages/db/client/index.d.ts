@@ -45,6 +45,38 @@ export type StatusLog = $Result.DefaultSelection<Prisma.$StatusLogPayload>
 export type Position = $Result.DefaultSelection<Prisma.$PositionPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  EMPLOYEE: 'EMPLOYEE',
+  ADMIN: 'ADMIN',
+  HR: 'HR'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const ReferralStatus: {
+  NEW: 'NEW',
+  CONTACTED: 'CONTACTED',
+  SELECTED: 'SELECTED',
+  REJECTED: 'REJECTED'
+};
+
+export type ReferralStatus = (typeof ReferralStatus)[keyof typeof ReferralStatus]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
+
+export type ReferralStatus = $Enums.ReferralStatus
+
+export const ReferralStatus: typeof $Enums.ReferralStatus
+
+/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
@@ -1382,7 +1414,7 @@ export namespace Prisma {
     employeeId: string | null
     name: string | null
     department: string | null
-    role: string | null
+    role: $Enums.Role | null
     passwordHash: string | null
     isVerified: boolean | null
     otp: string | null
@@ -1397,7 +1429,7 @@ export namespace Prisma {
     employeeId: string | null
     name: string | null
     department: string | null
-    role: string | null
+    role: $Enums.Role | null
     passwordHash: string | null
     isVerified: boolean | null
     otp: string | null
@@ -1547,7 +1579,7 @@ export namespace Prisma {
     employeeId: string
     name: string
     department: string | null
-    role: string
+    role: $Enums.Role
     passwordHash: string | null
     isVerified: boolean
     otp: string | null
@@ -1637,7 +1669,7 @@ export namespace Prisma {
       employeeId: string
       name: string
       department: string | null
-      role: string
+      role: $Enums.Role
       passwordHash: string | null
       isVerified: boolean
       otp: string | null
@@ -2043,7 +2075,7 @@ export namespace Prisma {
     readonly employeeId: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly department: FieldRef<"User", 'String'>
-    readonly role: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'Role'>
     readonly passwordHash: FieldRef<"User", 'String'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
     readonly otp: FieldRef<"User", 'String'>
@@ -4253,7 +4285,7 @@ export namespace Prisma {
     candidatePhone: string | null
     resumeUrl: string | null
     notes: string | null
-    status: string | null
+    status: $Enums.ReferralStatus | null
     createdAt: Date | null
     updatedAt: Date | null
     referredById: string | null
@@ -4268,7 +4300,7 @@ export namespace Prisma {
     candidatePhone: string | null
     resumeUrl: string | null
     notes: string | null
-    status: string | null
+    status: $Enums.ReferralStatus | null
     createdAt: Date | null
     updatedAt: Date | null
     referredById: string | null
@@ -4418,7 +4450,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl: string | null
     notes: string | null
-    status: string
+    status: $Enums.ReferralStatus
     createdAt: Date
     updatedAt: Date
     referredById: string
@@ -4519,7 +4551,7 @@ export namespace Prisma {
       candidatePhone: string
       resumeUrl: string | null
       notes: string | null
-      status: string
+      status: $Enums.ReferralStatus
       createdAt: Date
       updatedAt: Date
       referredById: string
@@ -4927,7 +4959,7 @@ export namespace Prisma {
     readonly candidatePhone: FieldRef<"Referral", 'String'>
     readonly resumeUrl: FieldRef<"Referral", 'String'>
     readonly notes: FieldRef<"Referral", 'String'>
-    readonly status: FieldRef<"Referral", 'String'>
+    readonly status: FieldRef<"Referral", 'ReferralStatus'>
     readonly createdAt: FieldRef<"Referral", 'DateTime'>
     readonly updatedAt: FieldRef<"Referral", 'DateTime'>
     readonly referredById: FieldRef<"Referral", 'String'>
@@ -5296,8 +5328,8 @@ export namespace Prisma {
 
   export type StatusLogMinAggregateOutputType = {
     id: string | null
-    fromStatus: string | null
-    toStatus: string | null
+    fromStatus: $Enums.ReferralStatus | null
+    toStatus: $Enums.ReferralStatus | null
     note: string | null
     createdAt: Date | null
     referralId: string | null
@@ -5306,8 +5338,8 @@ export namespace Prisma {
 
   export type StatusLogMaxAggregateOutputType = {
     id: string | null
-    fromStatus: string | null
-    toStatus: string | null
+    fromStatus: $Enums.ReferralStatus | null
+    toStatus: $Enums.ReferralStatus | null
     note: string | null
     createdAt: Date | null
     referralId: string | null
@@ -5431,8 +5463,8 @@ export namespace Prisma {
 
   export type StatusLogGroupByOutputType = {
     id: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note: string | null
     createdAt: Date
     referralId: string
@@ -5502,8 +5534,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      fromStatus: string
-      toStatus: string
+      fromStatus: $Enums.ReferralStatus
+      toStatus: $Enums.ReferralStatus
       note: string | null
       createdAt: Date
       referralId: string
@@ -5903,8 +5935,8 @@ export namespace Prisma {
    */ 
   interface StatusLogFieldRefs {
     readonly id: FieldRef<"StatusLog", 'String'>
-    readonly fromStatus: FieldRef<"StatusLog", 'String'>
-    readonly toStatus: FieldRef<"StatusLog", 'String'>
+    readonly fromStatus: FieldRef<"StatusLog", 'ReferralStatus'>
+    readonly toStatus: FieldRef<"StatusLog", 'ReferralStatus'>
     readonly note: FieldRef<"StatusLog", 'String'>
     readonly createdAt: FieldRef<"StatusLog", 'DateTime'>
     readonly referralId: FieldRef<"StatusLog", 'String'>
@@ -7333,6 +7365,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -7368,6 +7414,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ReferralStatus'
+   */
+  export type EnumReferralStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReferralStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ReferralStatus[]'
+   */
+  export type ListEnumReferralStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReferralStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7394,7 +7454,7 @@ export namespace Prisma {
     employeeId?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     department?: StringNullableFilter<"User"> | string | null
-    role?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     passwordHash?: StringNullableFilter<"User"> | string | null
     isVerified?: BoolFilter<"User"> | boolean
     otp?: StringNullableFilter<"User"> | string | null
@@ -7429,7 +7489,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
     department?: StringNullableFilter<"User"> | string | null
-    role?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     passwordHash?: StringNullableFilter<"User"> | string | null
     isVerified?: BoolFilter<"User"> | boolean
     otp?: StringNullableFilter<"User"> | string | null
@@ -7466,7 +7526,7 @@ export namespace Prisma {
     employeeId?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     department?: StringNullableWithAggregatesFilter<"User"> | string | null
-    role?: StringWithAggregatesFilter<"User"> | string
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     passwordHash?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
     otp?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -7611,7 +7671,7 @@ export namespace Prisma {
     candidatePhone?: StringFilter<"Referral"> | string
     resumeUrl?: StringNullableFilter<"Referral"> | string | null
     notes?: StringNullableFilter<"Referral"> | string | null
-    status?: StringFilter<"Referral"> | string
+    status?: EnumReferralStatusFilter<"Referral"> | $Enums.ReferralStatus
     createdAt?: DateTimeFilter<"Referral"> | Date | string
     updatedAt?: DateTimeFilter<"Referral"> | Date | string
     referredById?: StringFilter<"Referral"> | string
@@ -7650,7 +7710,7 @@ export namespace Prisma {
     candidatePhone?: StringFilter<"Referral"> | string
     resumeUrl?: StringNullableFilter<"Referral"> | string | null
     notes?: StringNullableFilter<"Referral"> | string | null
-    status?: StringFilter<"Referral"> | string
+    status?: EnumReferralStatusFilter<"Referral"> | $Enums.ReferralStatus
     createdAt?: DateTimeFilter<"Referral"> | Date | string
     updatedAt?: DateTimeFilter<"Referral"> | Date | string
     referredById?: StringFilter<"Referral"> | string
@@ -7689,7 +7749,7 @@ export namespace Prisma {
     candidatePhone?: StringWithAggregatesFilter<"Referral"> | string
     resumeUrl?: StringNullableWithAggregatesFilter<"Referral"> | string | null
     notes?: StringNullableWithAggregatesFilter<"Referral"> | string | null
-    status?: StringWithAggregatesFilter<"Referral"> | string
+    status?: EnumReferralStatusWithAggregatesFilter<"Referral"> | $Enums.ReferralStatus
     createdAt?: DateTimeWithAggregatesFilter<"Referral"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Referral"> | Date | string
     referredById?: StringWithAggregatesFilter<"Referral"> | string
@@ -7701,8 +7761,8 @@ export namespace Prisma {
     OR?: StatusLogWhereInput[]
     NOT?: StatusLogWhereInput | StatusLogWhereInput[]
     id?: StringFilter<"StatusLog"> | string
-    fromStatus?: StringFilter<"StatusLog"> | string
-    toStatus?: StringFilter<"StatusLog"> | string
+    fromStatus?: EnumReferralStatusFilter<"StatusLog"> | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFilter<"StatusLog"> | $Enums.ReferralStatus
     note?: StringNullableFilter<"StatusLog"> | string | null
     createdAt?: DateTimeFilter<"StatusLog"> | Date | string
     referralId?: StringFilter<"StatusLog"> | string
@@ -7726,8 +7786,8 @@ export namespace Prisma {
     AND?: StatusLogWhereInput | StatusLogWhereInput[]
     OR?: StatusLogWhereInput[]
     NOT?: StatusLogWhereInput | StatusLogWhereInput[]
-    fromStatus?: StringFilter<"StatusLog"> | string
-    toStatus?: StringFilter<"StatusLog"> | string
+    fromStatus?: EnumReferralStatusFilter<"StatusLog"> | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFilter<"StatusLog"> | $Enums.ReferralStatus
     note?: StringNullableFilter<"StatusLog"> | string | null
     createdAt?: DateTimeFilter<"StatusLog"> | Date | string
     referralId?: StringFilter<"StatusLog"> | string
@@ -7753,8 +7813,8 @@ export namespace Prisma {
     OR?: StatusLogScalarWhereWithAggregatesInput[]
     NOT?: StatusLogScalarWhereWithAggregatesInput | StatusLogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"StatusLog"> | string
-    fromStatus?: StringWithAggregatesFilter<"StatusLog"> | string
-    toStatus?: StringWithAggregatesFilter<"StatusLog"> | string
+    fromStatus?: EnumReferralStatusWithAggregatesFilter<"StatusLog"> | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusWithAggregatesFilter<"StatusLog"> | $Enums.ReferralStatus
     note?: StringNullableWithAggregatesFilter<"StatusLog"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"StatusLog"> | Date | string
     referralId?: StringWithAggregatesFilter<"StatusLog"> | string
@@ -7823,7 +7883,7 @@ export namespace Prisma {
     employeeId: string
     name: string
     department?: string | null
-    role?: string
+    role?: $Enums.Role
     passwordHash?: string | null
     isVerified?: boolean
     otp?: string | null
@@ -7839,7 +7899,7 @@ export namespace Prisma {
     employeeId: string
     name: string
     department?: string | null
-    role?: string
+    role?: $Enums.Role
     passwordHash?: string | null
     isVerified?: boolean
     otp?: string | null
@@ -7855,7 +7915,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7871,7 +7931,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7887,7 +7947,7 @@ export namespace Prisma {
     employeeId: string
     name: string
     department?: string | null
-    role?: string
+    role?: $Enums.Role
     passwordHash?: string | null
     isVerified?: boolean
     otp?: string | null
@@ -7902,7 +7962,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7917,7 +7977,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8073,7 +8133,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     position: PositionCreateNestedOneWithoutReferralsInput
@@ -8089,7 +8149,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     referredById: string
@@ -8105,7 +8165,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: PositionUpdateOneRequiredWithoutReferralsNestedInput
@@ -8121,7 +8181,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referredById?: StringFieldUpdateOperationsInput | string
@@ -8137,7 +8197,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     referredById: string
@@ -8152,7 +8212,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8165,7 +8225,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referredById?: StringFieldUpdateOperationsInput | string
@@ -8174,8 +8234,8 @@ export namespace Prisma {
 
   export type StatusLogCreateInput = {
     id?: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note?: string | null
     createdAt?: Date | string
     changedBy: string
@@ -8184,8 +8244,8 @@ export namespace Prisma {
 
   export type StatusLogUncheckedCreateInput = {
     id?: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note?: string | null
     createdAt?: Date | string
     referralId: string
@@ -8194,8 +8254,8 @@ export namespace Prisma {
 
   export type StatusLogUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     changedBy?: StringFieldUpdateOperationsInput | string
@@ -8204,8 +8264,8 @@ export namespace Prisma {
 
   export type StatusLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referralId?: StringFieldUpdateOperationsInput | string
@@ -8214,8 +8274,8 @@ export namespace Prisma {
 
   export type StatusLogCreateManyInput = {
     id?: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note?: string | null
     createdAt?: Date | string
     referralId: string
@@ -8224,8 +8284,8 @@ export namespace Prisma {
 
   export type StatusLogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     changedBy?: StringFieldUpdateOperationsInput | string
@@ -8233,8 +8293,8 @@ export namespace Prisma {
 
   export type StatusLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referralId?: StringFieldUpdateOperationsInput | string
@@ -8329,6 +8389,13 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -8452,6 +8519,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -8585,6 +8662,13 @@ export namespace Prisma {
     status?: SortOrder
   }
 
+  export type EnumReferralStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReferralStatus | EnumReferralStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumReferralStatusFilter<$PrismaModel> | $Enums.ReferralStatus
+  }
+
   export type PositionRelationFilter = {
     is?: PositionWhereInput
     isNot?: PositionWhereInput
@@ -8648,6 +8732,16 @@ export namespace Prisma {
     updatedAt?: SortOrder
     referredById?: SortOrder
     positionId?: SortOrder
+  }
+
+  export type EnumReferralStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReferralStatus | EnumReferralStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumReferralStatusWithAggregatesFilter<$PrismaModel> | $Enums.ReferralStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumReferralStatusFilter<$PrismaModel>
+    _max?: NestedEnumReferralStatusFilter<$PrismaModel>
   }
 
   export type ReferralRelationFilter = {
@@ -8731,6 +8825,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
@@ -8803,6 +8901,10 @@ export namespace Prisma {
     connectOrCreate?: StatusLogCreateOrConnectWithoutReferralInput | StatusLogCreateOrConnectWithoutReferralInput[]
     createMany?: StatusLogCreateManyReferralInputEnvelope
     connect?: StatusLogWhereUniqueInput | StatusLogWhereUniqueInput[]
+  }
+
+  export type EnumReferralStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ReferralStatus
   }
 
   export type PositionUpdateOneRequiredWithoutReferralsNestedInput = {
@@ -8933,6 +9035,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -9016,6 +9125,16 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -9079,6 +9198,23 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumReferralStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReferralStatus | EnumReferralStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumReferralStatusFilter<$PrismaModel> | $Enums.ReferralStatus
+  }
+
+  export type NestedEnumReferralStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReferralStatus | EnumReferralStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReferralStatus[] | ListEnumReferralStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumReferralStatusWithAggregatesFilter<$PrismaModel> | $Enums.ReferralStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumReferralStatusFilter<$PrismaModel>
+    _max?: NestedEnumReferralStatusFilter<$PrismaModel>
+  }
+
   export type ReferralCreateWithoutReferredByInput = {
     id?: string
     refCode?: string
@@ -9087,7 +9223,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     position: PositionCreateNestedOneWithoutReferralsInput
@@ -9102,7 +9238,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     positionId: string
@@ -9146,7 +9282,7 @@ export namespace Prisma {
     candidatePhone?: StringFilter<"Referral"> | string
     resumeUrl?: StringNullableFilter<"Referral"> | string | null
     notes?: StringNullableFilter<"Referral"> | string | null
-    status?: StringFilter<"Referral"> | string
+    status?: EnumReferralStatusFilter<"Referral"> | $Enums.ReferralStatus
     createdAt?: DateTimeFilter<"Referral"> | Date | string
     updatedAt?: DateTimeFilter<"Referral"> | Date | string
     referredById?: StringFilter<"Referral"> | string
@@ -9181,7 +9317,7 @@ export namespace Prisma {
     employeeId: string
     name: string
     department?: string | null
-    role?: string
+    role?: $Enums.Role
     passwordHash?: string | null
     isVerified?: boolean
     otp?: string | null
@@ -9196,7 +9332,7 @@ export namespace Prisma {
     employeeId: string
     name: string
     department?: string | null
-    role?: string
+    role?: $Enums.Role
     passwordHash?: string | null
     isVerified?: boolean
     otp?: string | null
@@ -9211,8 +9347,8 @@ export namespace Prisma {
 
   export type StatusLogCreateWithoutReferralInput = {
     id?: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note?: string | null
     createdAt?: Date | string
     changedBy: string
@@ -9220,8 +9356,8 @@ export namespace Prisma {
 
   export type StatusLogUncheckedCreateWithoutReferralInput = {
     id?: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note?: string | null
     createdAt?: Date | string
     changedBy: string
@@ -9282,7 +9418,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9297,7 +9433,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9326,8 +9462,8 @@ export namespace Prisma {
     OR?: StatusLogScalarWhereInput[]
     NOT?: StatusLogScalarWhereInput | StatusLogScalarWhereInput[]
     id?: StringFilter<"StatusLog"> | string
-    fromStatus?: StringFilter<"StatusLog"> | string
-    toStatus?: StringFilter<"StatusLog"> | string
+    fromStatus?: EnumReferralStatusFilter<"StatusLog"> | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFilter<"StatusLog"> | $Enums.ReferralStatus
     note?: StringNullableFilter<"StatusLog"> | string | null
     createdAt?: DateTimeFilter<"StatusLog"> | Date | string
     referralId?: StringFilter<"StatusLog"> | string
@@ -9342,7 +9478,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     position: PositionCreateNestedOneWithoutReferralsInput
@@ -9357,7 +9493,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     referredById: string
@@ -9388,7 +9524,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: PositionUpdateOneRequiredWithoutReferralsNestedInput
@@ -9403,7 +9539,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referredById?: StringFieldUpdateOperationsInput | string
@@ -9418,7 +9554,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     referredBy: UserCreateNestedOneWithoutReferralsInput
@@ -9433,7 +9569,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     referredById: string
@@ -9474,7 +9610,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     positionId: string
@@ -9488,7 +9624,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: PositionUpdateOneRequiredWithoutReferralsNestedInput
@@ -9503,7 +9639,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     positionId?: StringFieldUpdateOperationsInput | string
@@ -9518,7 +9654,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     positionId?: StringFieldUpdateOperationsInput | string
@@ -9526,8 +9662,8 @@ export namespace Prisma {
 
   export type StatusLogCreateManyReferralInput = {
     id?: string
-    fromStatus: string
-    toStatus: string
+    fromStatus: $Enums.ReferralStatus
+    toStatus: $Enums.ReferralStatus
     note?: string | null
     createdAt?: Date | string
     changedBy: string
@@ -9535,8 +9671,8 @@ export namespace Prisma {
 
   export type StatusLogUpdateWithoutReferralInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     changedBy?: StringFieldUpdateOperationsInput | string
@@ -9544,8 +9680,8 @@ export namespace Prisma {
 
   export type StatusLogUncheckedUpdateWithoutReferralInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     changedBy?: StringFieldUpdateOperationsInput | string
@@ -9553,8 +9689,8 @@ export namespace Prisma {
 
   export type StatusLogUncheckedUpdateManyWithoutReferralInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromStatus?: StringFieldUpdateOperationsInput | string
-    toStatus?: StringFieldUpdateOperationsInput | string
+    fromStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
+    toStatus?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     changedBy?: StringFieldUpdateOperationsInput | string
@@ -9568,7 +9704,7 @@ export namespace Prisma {
     candidatePhone: string
     resumeUrl?: string | null
     notes?: string | null
-    status?: string
+    status?: $Enums.ReferralStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     referredById: string
@@ -9582,7 +9718,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referredBy?: UserUpdateOneRequiredWithoutReferralsNestedInput
@@ -9597,7 +9733,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referredById?: StringFieldUpdateOperationsInput | string
@@ -9612,7 +9748,7 @@ export namespace Prisma {
     candidatePhone?: StringFieldUpdateOperationsInput | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumReferralStatusFieldUpdateOperationsInput | $Enums.ReferralStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     referredById?: StringFieldUpdateOperationsInput | string
