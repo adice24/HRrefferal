@@ -4,7 +4,6 @@ import { ValidationPipe } from '@nestjs/common';
 import express from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
 
-// Global server instance for caching
 const server = express();
 let cachedApp: any;
 
@@ -14,14 +13,19 @@ export const createServer = async (expressInstance: any) => {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
-    { logger: ['error', 'warn'] } // Reduce log noise in production
+    { logger: ['error', 'warn'] }
   );
   
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   
+  // High-speed, professional CORS hardening
   app.enableCors({
-    origin: ['https://h-rrefferal-web.vercel.app', 'http://localhost:3000'],
+    origin: [
+      'https://h-rrefferal-web.vercel.app',
+      'https://h-rrefferal-web-git-main-adice24s-projects.vercel.app',
+      'http://localhost:3000'
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
@@ -31,13 +35,7 @@ export const createServer = async (expressInstance: any) => {
   return app;
 };
 
-// Vercel serverless handler with high-speed caching
 export default async (req: any, res: any) => {
-  try {
-    await createServer(server);
-    return server(req, res);
-  } catch (err: any) {
-    console.error('CRITICAL STARTUP ERROR:', err.message);
-    res.status(500).send('API Cluster Initialization Failed: ' + err.message);
-  }
+  await createServer(server);
+  return server(req, res);
 };

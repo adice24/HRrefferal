@@ -1,134 +1,139 @@
 "use client";
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useAppContext } from '../../../context/AppContext';
-import VisualSection from '../../../components/auth/VisualSection';
+import { 
+  LogIn, 
+  Mail, 
+  Lock, 
+  HelpCircle, 
+  Settings, 
+  ChevronRight,
+  ShieldCheck
+} from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function LoginPage() {
-  const { login } = useAppContext();
   const router = useRouter();
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
+  const { login } = useAppContext();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
-
+    if (!email || !password) return toast.error('Please fill in all fields');
+    
+    setIsLoading(true);
     try {
-      const success = await login(form.email, form.password);
+      const success = await login(email, password);
       if (success) {
-        toast.success('Access Granted. Redirecting...');
-        // We handle actual route redirect in AppContext or check role here
-        // But login_user already sets user state.
-        
-        // Wait 1s for state update then redirect. 
-        // In a real app we'd redirect as soon as state exists.
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 1000);
-      } else {
-        setError('Verification failed. Check credentials.');
+        toast.success('Access Granted');
+        router.push('/dashboard');
       }
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed.');
-      toast.error('Access Denied');
+    } catch (err) {
+      // toast.error handled in Context
+    } finally {
+      setIsLoading(false);
     }
-    setLoading(false);
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen bg-[#fcfcf9] overflow-hidden">
-      {/* LEFT SIDE - AUTH FORM */}
-      <div className="flex flex-col w-full lg:w-1/2 p-6 lg:p-12 overflow-y-auto">
-        <header className="flex items-center justify-between mb-12">
-          <Link href="/" className="text-2xl font-black tracking-tighter text-[#2B1D1C] hover:opacity-80 transition-opacity">
-            PLATFORM
-          </Link>
-          <Link href="/auth/register" className="px-6 py-2.5 rounded-xl border-2 border-[#861C1C] text-[#861C1C] text-[10px] font-black uppercase tracking-widest hover:bg-[#861C1C]/5 transition-all">
-            Join Cluster
-          </Link>
-        </header>
+    <div className="min-h-screen bg-[#801414] flex flex-col relative overflow-hidden font-sans selection:bg-[#B32626] selection:text-white">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-[#701010] rounded-3xl -rotate-12 opacity-40 blur-sm" />
+      <div className="absolute bottom-20 right-20 w-80 h-96 bg-[#701010] rounded-3xl rotate-6 opacity-40 blur-sm" />
+      <div className="absolute top-1/4 right-[10%] w-32 h-32 bg-[#701010] rounded-2xl rotate-45 opacity-30" />
+      <div className="absolute bottom-1/4 left-[15%] w-64 h-24 bg-[#701010] rounded-full -rotate-12 opacity-30" />
 
-        <div className="max-w-md mx-auto w-full flex-1 flex flex-col justify-center py-10">
-          <div className="mb-10 animate-fade-in">
-            <h1 className="text-[56px] lg:text-[72px] font-black leading-[0.85] tracking-tighter text-[#2B1D1C] mb-6">
+      {/* Naval Header */}
+      <header className="relative z-10 p-8 flex justify-between items-center max-w-7xl mx-auto w-full">
+        <div className="flex items-center gap-2 group cursor-pointer">
+          <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-all">
+            <ShieldCheck className="text-white w-6 h-6" />
+          </div>
+          <span className="text-white text-2xl font-bold tracking-tight">Refentra Admin</span>
+        </div>
+        <div className="flex items-center gap-6 text-white/70">
+          <button className="hover:text-white transition-colors"><HelpCircle size={24} /></button>
+          <button className="hover:text-white transition-colors"><Settings size={24} /></button>
+        </div>
+      </header>
+
+      {/* Main Login Ingress */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 -mt-20">
+        <div className="max-w-md w-full animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="mb-12">
+            <h1 className="text-white text-7xl font-bold tracking-tighter leading-[0.9]">
               Welcome<br />Back
             </h1>
-            <p className="text-lg text-slate-500 font-medium leading-relaxed">
-              Log in to your recruitment cluster securely using your credentials.
-            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 animate-slide-up">
-            {error && (
-              <div className="p-4 bg-red-50 text-red-600 rounded-2xl text-[10px] uppercase font-black tracking-widest border border-red-100 flex items-center justify-center animate-shake">
-                 {error}
-              </div>
-            )}
-
-            <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#2B1D1C]/60 ml-1">Email Identifier</label>
-              <input
-                type="email"
-                value={form.email}
-                onChange={(e) => update('email', e.target.value)}
-                placeholder="identifier@cluster.io"
-                className="w-full px-6 py-4 rounded-2xl bg-[#f4f7f4] border-2 border-transparent text-[#2B1D1C] font-bold placeholder:text-[#2B1D1C]/20 focus:border-[#861C1C]/10 focus:bg-white outline-none transition-all"
-                required
-              />
+          <div className="bg-[#EFE9E6] rounded-[40px] p-10 shadow-2xl shadow-black/20 border border-white/10">
+            <div className="mb-10 flex flex-col gap-1">
+              <span className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase">
+                Secure Portal / Identity Verification
+              </span>
             </div>
 
-            <div className="space-y-2">
-              <div className="flex justify-between items-center px-1">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#2B1D1C]/60">Access Key</label>
-                <Link href="#" className="text-[10px] font-black uppercase text-[#861C1C] hover:underline">Forgot?</Link>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-2">
+                <label className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase px-1">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-[#E5DED9] border-none rounded-2xl py-5 px-6 text-[#801414] placeholder-[#801414]/30 focus:ring-2 focus:ring-[#801414]/20 transition-all outline-none text-lg font-medium"
+                    placeholder="admin@refentra.com"
+                  />
+                </div>
               </div>
-              <input
-                type="password"
-                value={form.password}
-                onChange={(e) => update('password', e.target.value)}
-                placeholder="••••••••"
-                className="w-full px-6 py-4 rounded-2xl bg-[#f4f7f4] border-2 border-transparent text-[#2B1D1C] font-bold placeholder:text-[#2B1D1C]/20 focus:border-[#861C1C]/10 focus:bg-white outline-none transition-all"
-                required
-              />
-            </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-5 rounded-2xl bg-[#861C1C] text-white font-black text-sm uppercase tracking-widest hover:bg-[#6b1616] transition-all transform hover:-translate-y-1 shadow-2xl shadow-[#861C1C]/20 disabled:opacity-50 active:scale-[0.98]"
-            >
-              {loading ? 'Decrypting Access...' : 'Initiate Login'}
-            </button>
-          </form>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center px-1">
+                  <label className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase">
+                    Password
+                  </label>
+                  <button type="button" className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#801414] transition-colors">
+                    Forgot Password
+                  </button>
+                </div>
+                <div className="relative">
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-[#E5DED9] border-none rounded-2xl py-5 px-6 text-[#801414] placeholder-[#801414]/30 focus:ring-2 focus:ring-[#801414]/20 transition-all outline-none text-lg font-medium"
+                    placeholder="••••••••"
+                  />
+                </div>
+              </div>
 
-          <div className="h-12"></div>
-
-          <p className="text-center text-sm font-bold text-slate-400">
-            Don't have an account? 
-            <Link href="/auth/register" className="text-[#861C1C] font-black hover:underline ml-2 uppercase text-[10px] tracking-widest">Sign Up</Link>
-          </p>
-
-          <div className="mt-auto pt-10 text-[10px] uppercase font-black tracking-widest text-slate-300 text-center">
-            © 2026 REFENTRA PLATFORM. ALL RIGHTS RESERVED.
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#7A0C0C] hover:bg-[#630909] active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100 text-white rounded-2xl py-6 px-6 font-bold tracking-widest uppercase flex items-center justify-center gap-3 shadow-xl shadow-[#7A0C0C]/20 transition-all"
+              >
+                {isLoading ? 'Verifying...' : 'Initiate Login'}
+                {!isLoading && <ChevronRight size={20} />}
+              </button>
+            </form>
           </div>
         </div>
-      </div>
+      </main>
 
-      {/* RIGHT SIDE - ANIMATED VISUAL SECTION */}
-      <div className="w-full lg:w-1/2">
-        <VisualSection 
-          title="Supervision Mode Engaged."
-          subtitle="Access your global recruitment pipeline with enterprise-grade security."
-        />
-      </div>
+      {/* Footer Naval */}
+      <footer className="relative z-10 p-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto w-full text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 gap-4">
+        <div>© 2024 Refentra Editorial. All Rights Reserved.</div>
+        <div className="flex gap-8">
+          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </footer>
     </div>
   );
 }
