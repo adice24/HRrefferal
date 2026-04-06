@@ -120,7 +120,7 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !isAuthenticated) {
-      router.push('/auth/login');
+      router.push('/admin/login');
     } else if (user && user.role !== 'ADMIN' && user.role !== 'HR') {
       router.push('/dashboard');
     }

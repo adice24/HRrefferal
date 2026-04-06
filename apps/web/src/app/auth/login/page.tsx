@@ -7,15 +7,13 @@ import {
   LogIn, 
   Mail, 
   Lock, 
-  HelpCircle, 
-  Settings, 
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  LayoutGrid
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import AdminBouncyBackground from '../../../components/AdminBouncyBackground';
 
-export default function LoginPage() {
+export default function UserLoginPage() {
   const router = useRouter();
   const { login } = useAppContext();
   const [email, setEmail] = useState('');
@@ -24,121 +22,126 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) return toast.error('Please fill in all fields');
+    if (!email || !password) return toast.error('Please enter your credentials');
     
     setIsLoading(true);
     try {
       const success = await login(email, password);
       if (success) {
-        toast.success('Access Granted');
+        toast.success('Logged in successfully');
         router.push('/dashboard');
       }
-    } catch (err) {
-      // toast.error handled in Context
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || 'Login failed. Please check your credentials.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#801414] flex flex-col relative overflow-hidden font-sans selection:bg-[#B32626] selection:text-white">
-      {/* 3D Interactive Background - Base Layer */}
-      <div className="absolute inset-0 z-0 h-full w-full">
-        <AdminBouncyBackground />
-      </div>
-      
-      {/* Dynamic Background Elements - Mid Layer */}
-      <div className="absolute inset-0 z-5 pointer-events-none opacity-20">
-        <div className="absolute top-10 left-10 w-96 h-96 bg-[#701010] rounded-3xl -rotate-12 blur-sm" />
-        <div className="absolute bottom-20 right-20 w-80 h-96 bg-[#701010] rounded-3xl rotate-6 blur-sm" />
-      </div>
-
-      {/* Main UI Ingress - Top Layer */}
-      <header className="relative z-10 p-8 flex justify-between items-center max-w-7xl mx-auto w-full pointer-events-auto">
-        <div className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-all">
-            <ShieldCheck className="text-white w-6 h-6" />
+    <div className="min-h-screen flex flex-col md:flex-row font-sans selection:bg-[#B32626] selection:text-white">
+      {/* ─── LEFT: FORM INGRESS ─── */}
+      <div className="flex-1 bg-[#F9F7F5] flex flex-col p-8 md:p-16 relative overflow-hidden">
+        <header className="mb-12 flex justify-between items-center relative z-10">
+          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => router.push('/')}>
+            <span className="text-[#1A1A1A] text-2xl font-black tracking-tighter uppercase">Platform</span>
           </div>
-          <span className="text-white text-2xl font-bold tracking-tight">Refentra Admin</span>
-        </div>
-        <div className="flex items-center gap-6 text-white/70">
-          <button className="hover:text-white transition-colors"><HelpCircle size={24} /></button>
-          <button className="hover:text-white transition-colors"><Settings size={24} /></button>
-        </div>
-      </header>
+          <button className="border border-[#1A1A1A]/10 px-4 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase hover:bg-black hover:text-white transition-all">
+            Join Cluster
+          </button>
+        </header>
 
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 -mt-20 pointer-events-none">
-        <div className="max-w-md w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pointer-events-auto">
-          <div className="mb-12">
-            <h1 className="text-white text-7xl font-bold tracking-tighter leading-[0.9]">
+        <main className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full relative z-10">
+          <div className="mb-10">
+            <h1 className="text-[#1A1A1A] text-6xl font-bold tracking-tighter mb-4">
               Welcome<br />Back
             </h1>
+            <p className="text-[#1A1A1A]/60 text-sm leading-relaxed max-w-[280px]">
+              Log in to your recruitment cluster securely using your credentials.
+            </p>
           </div>
 
-          <div className="bg-[#EFE9E6] rounded-[40px] p-10 shadow-2xl shadow-black/20 border border-white/10">
-            <div className="mb-10 flex flex-col gap-1">
-              <span className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase">
-                Secure Portal / Identity Verification
-              </span>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Error Indicator (Optional Mock from Image) */}
+            {/* <div className="bg-[#FFE5E5] text-[#D32F2F] text-[10px] font-bold tracking-[0.2em] uppercase py-3 rounded-lg text-center border border-[#FFCCD1]">
+              Login Failed.
+            </div> */}
+
+            <div className="space-y-1">
+              <label className="text-[#8B1414]/70 text-[10px] font-bold tracking-[0.2em] uppercase px-1">
+                Email Identifier
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-[#F2F0EE] border-none rounded-xl py-4 px-5 text-[#1A1A1A] placeholder-[#1A1A1A]/20 focus:ring-2 focus:ring-[#8B1414]/10 outline-none text-sm transition-all"
+                placeholder="email@example.com"
+              />
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="space-y-2">
-                <label className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase px-1">
-                  Email Address
+            <div className="space-y-1">
+              <div className="flex justify-between items-center px-1">
+                <label className="text-[#8B1414]/70 text-[10px] font-bold tracking-[0.2em] uppercase">
+                  Access Key
                 </label>
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#E5DED9] border-none rounded-2xl py-5 px-6 text-[#801414] placeholder-[#801414]/30 focus:ring-2 focus:ring-[#801414]/20 transition-all outline-none text-lg font-medium"
-                    placeholder="admin@refentra.com"
-                  />
-                </div>
+                <button type="button" className="text-[#1A1A1A]/40 text-[9px] font-bold tracking-[0.2em] uppercase hover:text-[#8B1414] transition-colors">
+                  Forgot?
+                </button>
               </div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full bg-[#F2F0EE] border-none rounded-xl py-4 px-5 text-[#1A1A1A] placeholder-[#1A1A1A]/20 focus:ring-2 focus:ring-[#8B1414]/10 outline-none text-sm transition-all"
+                placeholder="••••••••"
+              />
+            </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between items-center px-1">
-                  <label className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase">
-                    Password
-                  </label>
-                  <button type="button" className="text-[#801414]/60 text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#801414] transition-colors">
-                    Forgot Password
-                  </button>
-                </div>
-                <div className="relative">
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-[#E5DED9] border-none rounded-2xl py-5 px-6 text-[#801414] placeholder-[#801414]/30 focus:ring-2 focus:ring-[#801414]/20 transition-all outline-none text-lg font-medium"
-                    placeholder="••••••••"
-                  />
-                </div>
-              </div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-[#8B1414] hover:bg-[#720C0C] active:scale-[0.98] disabled:opacity-50 text-white rounded-xl py-4 font-bold tracking-widest uppercase text-xs shadow-lg shadow-[#8B1414]/20 transition-all"
+            >
+              {isLoading ? 'Decrypting...' : 'Initiate Login'}
+            </button>
 
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-[#7A0C0C] hover:bg-[#630909] active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100 text-white rounded-2xl py-6 px-6 font-bold tracking-widest uppercase flex items-center justify-center gap-3 shadow-xl shadow-[#7A0C0C]/20 transition-all"
-              >
-                {isLoading ? 'Verifying...' : 'Initiate Login'}
-                {!isLoading && <ChevronRight size={20} />}
-              </button>
-            </form>
+            <p className="text-center text-[10px] font-bold tracking-[0.1em] uppercase text-[#1A1A1A]/30">
+              Don't have an account? <span className="text-[#8B1414] hover:underline cursor-pointer">Sign Up</span>
+            </p>
+          </form>
+        </main>
+
+        <footer className="mt-auto pt-8 text-center text-[8px] font-bold tracking-[0.2em] uppercase text-[#1A1A1A]/20 relative z-10">
+          © 2024 Refentra Platform. All Rights Reserved.
+        </footer>
+      </div>
+
+      {/* ─── RIGHT: CRIMSON PANEL ─── */}
+      <div className="hidden md:flex flex-1 bg-[#8B1414] relative items-center justify-center overflow-hidden">
+        {/* Grid Background Overlay */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")` }} />
+        
+        {/* Floating Circles for Depth */}
+        <div className="absolute top-10 left-10 w-48 h-48 bg-white/5 rounded-full border border-white/10 blur-xl" />
+        <div className="absolute bottom-20 right-10 w-64 h-96 bg-white/5 rounded-[40px] rotate-12 blur-lg border border-white/10" />
+
+        <div className="relative p-16 max-w-sm flex flex-col items-start gap-8">
+          <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+            <div className="w-1.5 h-1.5 bg-[#FF6B6B] rounded-full animate-pulse" />
+            <span className="text-[8px] font-bold tracking-[0.2em] uppercase text-white/70">Antigravity Mode Active</span>
+          </div>
+
+          <div>
+            <h2 className="text-white text-8xl font-bold tracking-tighter leading-[0.8] mb-8">
+              Start Your<br />Journey<br />With Us.
+            </h2>
+            <p className="text-white/60 text-lg font-medium leading-relaxed max-w-[280px]">
+              Access your global recruitment pipeline with enterprise-grade security.
+            </p>
           </div>
         </div>
-      </main>
-
-      {/* Footer Naval */}
-      <footer className="relative z-10 p-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto w-full text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 gap-4 pointer-events-auto">
-        <div>© 2024 Refentra Editorial. All Rights Reserved.</div>
-        <div className="flex gap-8">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
