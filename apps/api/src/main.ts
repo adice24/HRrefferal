@@ -21,7 +21,19 @@ export const createServer = async (expressInstance: any) => {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   
   app.enableCors({
-    origin: ['http://localhost:1234'],
+    origin: (origin, callback) => {
+      const allowed = [
+        'http://localhost:1234',
+        'http://localhost:3000',
+      ];
+      // Allow requests with no origin (mobile apps, curl, etc)
+      // Allow any .vercel.app subdomain
+      if (!origin || allowed.includes(origin) || /\.vercel\.app$/.test(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
