@@ -13,6 +13,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import AdminBouncyBackground from '../../../components/AdminBouncyBackground';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -41,6 +42,9 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#801414] flex flex-col relative overflow-hidden font-sans selection:bg-[#B32626] selection:text-white">
+      {/* 3D Interactive Background */}
+      <AdminBouncyBackground />
+      
       {/* Dynamic Background Elements */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-[#701010] rounded-3xl -rotate-12 opacity-40 blur-sm" />
       <div className="absolute bottom-20 right-20 w-80 h-96 bg-[#701010] rounded-3xl rotate-6 opacity-40 blur-sm" />
