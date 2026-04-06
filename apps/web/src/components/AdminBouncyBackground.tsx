@@ -1,74 +1,92 @@
 "use client";
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, Shadow } from '@react-three/drei';
+import { 
+  Float, 
+  MeshDistortMaterial, 
+  ContactShadows, 
+  Environment
+} from '@react-three/drei';
 import * as THREE from 'three';
 
-const BouncyShape = ({ position, color, size }: { position: [number, number, number], color: string, size: number }) => {
+const BouncySphere = ({ position, color, scale }: { position: [number, number, number], color: string, scale: number }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
-  const [hovered, setHovered] = React.useState(false);
+  const [hovered, setHovered] = useState(false);
   
-  // High-speed bounce effect logic
+  // High-speed spring physics logic
   useFrame((state) => {
     if (meshRef.current) {
       const time = state.clock.getElapsedTime();
-      meshRef.current.rotation.x = Math.sin(time * 0.5) * 0.2;
-      meshRef.current.rotation.y = Math.cos(time * 0.5) * 0.2;
       
-      // Bouncy scale-up on hover
-      const targetScale = hovered ? size * 1.5 : size;
-      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+      // Floating motion
+      meshRef.current.position.y = position[1] + Math.sin(time + position[0]) * 0.5;
+      meshRef.current.rotation.x = Math.sin(time * 0.3) * 0.2;
+      meshRef.current.rotation.y = Math.cos(time * 0.3) * 0.2;
+      
+      // Elastic Scale
+      const targetScale = hovered ? scale * 1.8 : scale;
+      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <mesh
-        ref={meshRef}
-        position={position}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-      >
-        <sphereGeometry args={[1, 64, 64]} />
-        <MeshDistortMaterial
-          color={color}
-          speed={hovered ? 5 : 2}
-          distort={hovered ? 0.6 : 0.3}
-          radius={1}
-          roughness={0.1}
-          metalness={0.8}
-        />
-      </mesh>
-    </Float>
+    <mesh
+      ref={meshRef}
+      position={position}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      castShadow
+    >
+      <sphereGeometry args={[1, 64, 64]} />
+      <MeshDistortMaterial
+        color={color}
+        speed={hovered ? 6 : 1.5}
+        distort={hovered ? 0.7 : 0.4}
+        radius={1}
+        roughness={0.05}
+        metalness={0.9}
+        emissive={color}
+        emissiveIntensity={hovered ? 0.2 : 0}
+      />
+    </mesh>
   );
 };
 
 export default function AdminBouncyBackground() {
-  const shapes = useMemo(() => {
-    return Array.from({ length: 15 }).map((_, i) => ({
+  const spheres = useMemo(() => {
+    return Array.from({ length: 12 }).map((_, i) => ({
       position: [
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 12,
-        (Math.random() - 0.5) * 5,
+        (Math.random() - 0.5) * 30, // Wide spread
+        (Math.random() - 0.5) * 15,
+        -2 + (Math.random() * 5),
       ] as [number, number, number],
-      color: i % 2 === 0 ? "#8B0000" : "#B22222",
-      size: 0.5 + Math.random() * 1.2
+      color: i % 2 === 0 ? "#FF0000" : "#D40000", // Vibrant High-speed Crimson
+      scale: 1.5 + Math.random() * 2.5 // MASSIVE SCALE
     }));
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden">
-      <Canvas shadows camera={{ position: [0, 0, 10], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
+    <div className="absolute inset-0 z-1 pointer-events-auto overflow-hidden">
+      <Canvas shadows camera={{ position: [0, 0, 15], fov: 45 }}>
+        <color attach="background" args={["#801414"]} />
+        <ambientLight intensity={0.8} />
+        <spotLight position={[20, 20, 20]} angle={0.2} penumbra={1} intensity={2} castShadow />
+        <pointLight position={[-20, -20, -20]} intensity={1} color="#FF0000" />
         
-        {shapes.map((shape, i) => (
-          <BouncyShape key={i} {...shape} />
+        <Environment preset="night" />
+        
+        {spheres.map((sphere, i) => (
+          <BouncySphere key={i} {...sphere} />
         ))}
         
-        <Shadow opacity={0.2} scale={[20, 20, 1]} position={[0, 0, -5]} />
+        <ContactShadows 
+          position={[0, -10, 0]} 
+          opacity={0.4} 
+          scale={40} 
+          blur={2.5} 
+          far={20} 
+        />
       </Canvas>
     </div>
   );

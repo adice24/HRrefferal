@@ -42,17 +42,19 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#801414] flex flex-col relative overflow-hidden font-sans selection:bg-[#B32626] selection:text-white">
-      {/* 3D Interactive Background */}
-      <AdminBouncyBackground />
+      {/* 3D Interactive Background - Base Layer */}
+      <div className="absolute inset-0 z-0 h-full w-full">
+        <AdminBouncyBackground />
+      </div>
       
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-10 left-10 w-96 h-96 bg-[#701010] rounded-3xl -rotate-12 opacity-40 blur-sm" />
-      <div className="absolute bottom-20 right-20 w-80 h-96 bg-[#701010] rounded-3xl rotate-6 opacity-40 blur-sm" />
-      <div className="absolute top-1/4 right-[10%] w-32 h-32 bg-[#701010] rounded-2xl rotate-45 opacity-30" />
-      <div className="absolute bottom-1/4 left-[15%] w-64 h-24 bg-[#701010] rounded-full -rotate-12 opacity-30" />
+      {/* Dynamic Background Elements - Mid Layer */}
+      <div className="absolute inset-0 z-5 pointer-events-none opacity-20">
+        <div className="absolute top-10 left-10 w-96 h-96 bg-[#701010] rounded-3xl -rotate-12 blur-sm" />
+        <div className="absolute bottom-20 right-20 w-80 h-96 bg-[#701010] rounded-3xl rotate-6 blur-sm" />
+      </div>
 
-      {/* Naval Header */}
-      <header className="relative z-10 p-8 flex justify-between items-center max-w-7xl mx-auto w-full">
+      {/* Main UI Ingress - Top Layer */}
+      <header className="relative z-10 p-8 flex justify-between items-center max-w-7xl mx-auto w-full pointer-events-auto">
         <div className="flex items-center gap-2 group cursor-pointer">
           <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-all">
             <ShieldCheck className="text-white w-6 h-6" />
@@ -65,9 +67,8 @@ export default function LoginPage() {
         </div>
       </header>
 
-      {/* Main Login Ingress */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 -mt-20">
-        <div className="max-w-md w-full animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 -mt-20 pointer-events-none">
+        <div className="max-w-md w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pointer-events-auto">
           <div className="mb-12">
             <h1 className="text-white text-7xl font-bold tracking-tighter leading-[0.9]">
               Welcome<br />Back
@@ -131,7 +132,7 @@ export default function LoginPage() {
       </main>
 
       {/* Footer Naval */}
-      <footer className="relative z-10 p-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto w-full text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 gap-4">
+      <footer className="relative z-10 p-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto w-full text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 gap-4 pointer-events-auto">
         <div>© 2024 Refentra Editorial. All Rights Reserved.</div>
         <div className="flex gap-8">
           <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
