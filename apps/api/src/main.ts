@@ -17,8 +17,14 @@ export const createServer = async (expressInstance: any) => {
     { logger: ['error', 'warn'] } // Reduce log noise in production
   );
   
+  app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  app.enableCors();
+  
+  app.enableCors({
+    origin: ['https://h-rrefferal-web.vercel.app', 'http://localhost:3000'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
   
   await app.init();
   cachedApp = app;
